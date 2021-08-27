@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/form.css">
+  <link rel="stylesheet" href="css/global.css">
+  <title>Document</title>
+</head>
+<body onload="desenharVeiculos()">
+
+  <div id="header">
+    <strong>Lucro da Concessionária: <small>R$ 1000.00</small></strong>
+    <br />
+    <strong>
+      <input type="checkbox"> Buscar somente carros disponíveis 
+      <button onclick="desenharVeiculos()">Atualizar</button>
+    </strong>
+    
+  </div>
+  <div id="app">
+    <aside>
+      <strong>Cadastrar Veículo</strong>
+      <div>
+        <div class="input-block">
+          <label htmlFor="modelo">Modelo</label>
+          <input name="modelo" id="modelo" required />
+        </div>
+        <div class="input-block">
+            <label htmlFor="renavan">Renavan</label>
+            <input name="renavan" id="renavan" required />
+        </div>
+        <div class="input-block">
+            <label htmlFor="cor">Cor</label>
+            <input name="cor" id="cor" required />
+        </div>
+        <div class="input-block">
+          <label htmlFor="ano">Ano</label>
+          <input name="ano" id="ano" required />
+        </div>
+        <div class="input-block">
+          <label htmlFor="preco">Preço</label>
+          <input name="preco" id="preco" required />
+        </div>
+        <div class="input-block">
+          <label htmlFor="url">Foto</label>
+          <input name="url" id="url" required />
+        </div>
+        <div class="input-block-2">
+          <label htmlFor="vendido">Vendido</label>
+          <input type="checkbox" name="vendido" id="vendido" />
+        </div>
+        <button type="submit" onclick="cadastrarVeiculo()">Cadastrar</button>
+      </div>
+    </aside>
+    <main>
+        <ul id="ulItens"></ul>
+    </main>
+  </div>
+  
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="javascript/function.js"></script>
+</body>
+</html>

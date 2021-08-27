@@ -1,0 +1,126 @@
+#header {
+  width: 1140px;
+  height: 64px;
+  background-color: #fff;
+  border-radius: 16px;
+  margin: 50px auto 0px;
+  justify-content: space-between;
+  display: flex;
+  padding: 20px;
+}
+
+#header strong {
+  font-size: 20px;
+}
+
+#header strong button {
+  width: 100px;
+  border: 0;
+  background: #7d40e7;
+  border-radius: 16px;
+  padding: 5px 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: background 0.5s;
+}
+
+#header strong button:hover {
+  background: #6931ca;
+}
+
+#app2 {
+  display: flex;
+  padding-top: 120px;
+  justify-content: center;
+}
+
+#app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+#app main {
+  margin-left: 30px;
+}
+
+main {
+  flex: 1;
+}
+
+main ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  list-style: none;
+}
+
+li.dev-item {
+  background: #fff;
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.02);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+li.dev-item header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+li.dev-item header img {
+  width: 150px;
+  height: 170px;
+  border-radius: 8;
+}
+
+li.dev-item header .user-info {
+  margin-left: 10px;
+}
+
+.user-info strong {
+  display: block;
+  font-size: 16px;
+  color: #333;
+}
+
+.user-info span {
+  font-size: 13px;
+  color: #999;
+  margin-top: 2px;
+}
+
+li.dev-item p {
+  color: #999;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 2px 0;
+}
+
+li.dev-item a {
+  color: #8e4dff;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+li.dev-item a:hover {
+  color: #5a2ea6;
+}
+
+li.dev-item button {
+  color: #ff4d4d;
+  font-size: 14px;
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  margin-left: 20px;
+}
+
+li.dev-item button:hover {
+  color: #a62e2e;
+}

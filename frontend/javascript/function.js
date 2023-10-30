@@ -5,7 +5,8 @@ var vetorVeiculos = [{
   cor: 'Branco',
   ano: 2020,
   preco: 20000,
-  vendido: true
+  vendido: true,
+  photo: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fcarroesporteclube.com.br%2Fnoticias%2Fpolo-track-2023-o-novo-gol-que-voce-precisa-conhecer%2F&psig=AOvVaw0wRz4voNOBJd0heW2kGzcT&ust=1698779045124000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPDr9527noIDFQAAAAAdAAAAABAE'
 },
 {
   id: 1,
@@ -14,12 +15,13 @@ var vetorVeiculos = [{
   cor: 'Branco',
   ano: 2020,
   preco: 20000,
-  vendido: true
+  vendido: false,
+  photo: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fcarroesporteclube.com.br%2Fnoticias%2Fpolo-track-2023-o-novo-gol-que-voce-precisa-conhecer%2F&psig=AOvVaw0wRz4voNOBJd0heW2kGzcT&ust=1698779045124000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPDr9527noIDFQAAAAAdAAAAABAE'
 }];
 var veiculoEditar = {};
 
-function buscarVeiculos(){
-  axios.get('http://localhost:8080/aula03/webresources/usuario')
+function buscarVeiculos() {
+  axios.get('http://localhost:8080/api/carro/')
     .then(response => {
       vetorVeiculos = response.data
       desenharVeiculos()
@@ -29,8 +31,8 @@ function buscarVeiculos(){
     })
 }
 
-function buscarVeiculoEspecifico(id){
-  axios.get(`http://localhost:8080/aula03/webresources/usuario/${id}`)
+function buscarVeiculoEspecifico(id) {
+  axios.get(`http://localhost:8080/api/carro/${id}`)
     .then(response => {
       veiculoEditar = response.data
     })
@@ -39,21 +41,33 @@ function buscarVeiculoEspecifico(id){
     })
 }
 
-function cadastrarVeiculo(){
+function limparCampos() {
 
+  document.getElementById("modelo").value = ""
+  document.getElementById("renavan").value = ""
+  document.getElementById("cor").value = ""
+  document.getElementById("ano").value = ""
+  document.getElementById("preco").value = ""
+  document.getElementById("vendido").checked = false;
+  document.getElementById("url").value = ""
+
+}
+
+
+function cadastrarVeiculo() {
   const body = {
-     modelo: document.getElementById("modelo").value,
-     renavan : document.getElementById("renavan").value,
-     cor: document.getElementById("cor").value,
-     ano: Number(document.getElementById("ano").value),
-     preco: Number(document.getElementById("preco").value),
-     vendido: document.getElementById("vendido").checked,
-     url: document.getElementById("url").value
+    modelo: document.getElementById("modelo").value,
+    renavan: document.getElementById("renavan").value,
+    cor: document.getElementById("cor").value,
+    ano: Number(document.getElementById("ano").value),
+    preco: Number(document.getElementById("preco").value),
+    vendido: document.getElementById("vendido").checked,
+    photo: document.getElementById("url").value
   }
 
   axios({
     method: 'post',
-    url: 'http://localhost:8080/aula03/webresources/usuario',
+    url: 'http://localhost:8080/api/carro/',
     data: body
   }).then(_ => {
     console.log(response)
@@ -62,62 +76,26 @@ function cadastrarVeiculo(){
   }).catch(error => {
     console.log(error)
   })
+  buscarVeiculos();
+  limparCampos();
 }
-
-function deletarVeiculo(id){
-  if(confirm("Deseja mesmo apagar esse veiculo?")){
-    axios.delete(`http://localhost:8080/aula03/webresources/usuario/${id}`)
-    .then(response => {
-      vetorVeiculos = response.data
-      desenharVeiculos()
-    })
-    .catch(error => {
-      console.log(error)
-    })
-  }
-}
-
-function editarVeiculo(id){
-  const body = {
-    modelo: document.getElementById("modelo").value,
-    renavan : document.getElementById("renavan").value,
-    cor: document.getElementById("cor").value,
-    ano: Number(document.getElementById("ano").value),
-    preco: Number(document.getElementById("preco").value),
-    vendido: document.getElementById("vendido").checked,
-    url: document.getElementById("url").value
- }
-
-  axios({
-    method: 'put',
-    url: `http://localhost:8080/aula03/webresources/usuario/${id}`,
-    data: body
-  }).then(_ => {
-    window.location("index.html")
-    desenharVeiculos();
-  }).catch(error => {
-    console.log(error)
-  })
-}
-
 
 function desenharVeiculos() {
   const main = document.getElementById("ulItens");
   main.innerHTML = "";
 
   vetorVeiculos.forEach(veiculo => {
-      main.innerHTML += `<li class="dev-item">
+    main.innerHTML += `<li class="dev-item">
       <header>
-        <img src="https://toppng.com/uploads/preview/instagram-default-profile-picture-11562973083brycehrmyv.png" alt="Profile" />
+        <img src="${veiculo.photo}" alt="Profile" />
         <div class="user-info">
           <strong>${veiculo.modelo}</strong>
           <p>Renavan: ${veiculo.renavan}</p>
           <p>Cor: ${veiculo.cor}</p>
           <p>Ano: ${veiculo.ano}</p>
           <p>Preço: ${veiculo.preco} </p>
-          <p>Vendido: ${(veiculo.preco ? "Sim" : "Não")}</p>
+          <p>Vendido: ${(veiculo.vendido ? "Sim" : "Não")}</p>
           <br />
-          <a href="editar.html?codigo=${veiculo.id}">Editar</a>
           <button onclick="deletarVeiculo(${veiculo.id})">Remover</button>
         </div>
       </header>
@@ -125,3 +103,6 @@ function desenharVeiculos() {
   })
 }
 
+function init() {
+  buscarVeiculos();
+}

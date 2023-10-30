@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,16 +10,13 @@
   <link rel="stylesheet" href="css/global.css">
   <title>Document</title>
 </head>
-<body onload="desenharVeiculos()">
+
+<body onload="init()">
 
   <div id="header">
-    <strong>Lucro da Concessionária: <small>R$ 1000.00</small></strong>
+    <strong>Concessionária FIESC SENAI</strong>
     <br />
-    <strong>
-      <input type="checkbox"> Buscar somente carros disponíveis 
-      <button onclick="desenharVeiculos()">Atualizar</button>
-    </strong>
-    
+
   </div>
   <div id="app">
     <aside>
@@ -29,12 +27,12 @@
           <input name="modelo" id="modelo" required />
         </div>
         <div class="input-block">
-            <label htmlFor="renavan">Renavan</label>
-            <input name="renavan" id="renavan" required />
+          <label htmlFor="renavan">Renavan</label>
+          <input name="renavan" id="renavan" required />
         </div>
         <div class="input-block">
-            <label htmlFor="cor">Cor</label>
-            <input name="cor" id="cor" required />
+          <label htmlFor="cor">Cor</label>
+          <input name="cor" id="cor" required />
         </div>
         <div class="input-block">
           <label htmlFor="ano">Ano</label>
@@ -56,11 +54,12 @@
       </div>
     </aside>
     <main>
-        <ul id="ulItens"></ul>
+      <ul id="ulItens"></ul>
     </main>
   </div>
-  
+
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="javascript/function.js"></script>
 </body>
+
 </html>
